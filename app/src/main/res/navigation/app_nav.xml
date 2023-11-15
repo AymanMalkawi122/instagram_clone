@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav"
+    app:startDestination="@id/globalFragment">
+
+
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.instagram_clone.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/navigateToSearchResult"
+            app:destination="@id/searchResultFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.instagram_clone.profileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile"/>
+
+    <fragment
+        android:id="@+id/searchResultFragment"
+        android:name="com.example.instagram_clone.SearchResultFragment"
+        android:label="fragment_search_result"
+        tools:layout="@layout/fragment_search_result" >
+        <argument
+            android:name="queryText"
+            app:argType="string"
+            app:nullable="true" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/postListFragment"
+        android:name="com.example.instagram_clone.PostListFragment"
+        android:label="fragment_post_list"
+        tools:layout="@layout/fragment_post_list" >
+        <argument
+            android:name="postListRoute"
+            app:argType="string"
+            android:defaultValue="/api/v1/posts/" />
+        <action
+            android:id="@+id/action_postListFragment_to_recyclerViewBottomSheet2"
+            app:destination="@id/recyclerViewBottomSheet2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/globalFragment"
+        android:name="com.example.instagram_clone.GlobalFragment"
+        android:label="fragment_global"
+        tools:layout="@layout/fragment_global" >
+        <action
+            android:id="@+id/navigateToPostListFragment"
+            app:popUpTo="@id/app_nav"
+            app:popUpToInclusive="true"
+            app:destination="@id/postListFragment" />
+        <action
+            android:id="@+id/navigateToLoginFragment"
+            app:popUpTo="@id/app_nav"
+            app:popUpToInclusive="true"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.instagram_clone.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/navigateToRegisterFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/navigateToGlobalFragment"
+            app:destination="@id/globalFragment"
+            app:popUpTo="@id/app_nav"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.instagram_clone.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/navigateToLoginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/app_nav"
+            app:popUpToInclusive="true"
+            />
+    </fragment>
+
+    <dialog
+        android:id="@+id/recyclerViewBottomSheet2"
+        android:name="com.example.instagram_clone.RecyclerViewBottomSheet"
+        android:label="RecyclerViewBottomSheet" >
+        <argument
+            android:name="post"
+            app:argType="com.example.instagram_clone.Post" />
+    </dialog>
+
+</navigation>
